@@ -5,12 +5,10 @@ import org.example.credentials.Credentials;
 import org.example.credentials.User;
 import org.example.providers.UserProvider;
 import io.restassured.response.ValidatableResponse;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.apache.http.HttpStatus.SC_OK;
-import static org.junit.Assert.assertEquals;
 
 
 public class UserLoginTest {
@@ -23,11 +21,6 @@ public class UserLoginTest {
         userClient = new UserClient();
         user = UserProvider.getRandom();
     }
-    @After
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(300);
-    }
-
     @Test
     public void userCanLogin() throws InterruptedException {
         ValidatableResponse responseCreate = userClient.create(user);

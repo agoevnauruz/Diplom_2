@@ -29,9 +29,8 @@ public class UpdateUserTest {
     }
 
     @After
-    public void tearDown() throws InterruptedException {
+    public void tearDown() {
         userClient.delete(accessToken);
-        Thread.sleep(300);
     }
 
     @Test

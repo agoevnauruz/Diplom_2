@@ -4,7 +4,6 @@ import org.example.client.UserClient;
 import org.example.credentials.User;
 import org.example.providers.UserProvider;
 import io.restassured.response.ValidatableResponse;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,10 +18,6 @@ public class UserCreateTest {
     public void setUp(){
         userClient = new UserClient();
         user = UserProvider.getRandom();
-    }
-    @After
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(300);
     }
     @Test
     public void userCanBeCreated(){

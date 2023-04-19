@@ -34,7 +34,6 @@ public class CreateOrderTest {
     @After
     public void tearDown() throws InterruptedException {
         userClient.delete(accessToken);
-        Thread.sleep(300);
     }
 
     @Test

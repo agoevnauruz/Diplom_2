@@ -34,7 +34,6 @@ public class CreateUserWithEmptyFieldsTest {
             accessToken = responseCreate.extract().path("accessToken").toString().substring(6).trim();
             userClient.delete(accessToken);
         }
-        Thread.sleep(300); //In order to avoid 429 Error (too many requests)
     }
 
     public CreateUserWithEmptyFieldsTest(User user, int statusCode, String message) {

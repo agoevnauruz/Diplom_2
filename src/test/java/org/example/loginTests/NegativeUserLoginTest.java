@@ -24,10 +24,6 @@ public class NegativeUserLoginTest {
     public void setUp() {
         userClient = new UserClient();
     }
-    @After
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(300);
-    }
     public NegativeUserLoginTest(Credentials credentials, int statusCode, String message) {
         this.credentials = credentials;
         this.statusCode = statusCode;

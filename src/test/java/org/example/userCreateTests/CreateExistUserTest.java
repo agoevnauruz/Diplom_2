@@ -23,9 +23,8 @@ public class CreateExistUserTest {
     }
 
     @After
-    public void tearDown() throws InterruptedException {
+    public void tearDown() {
         userClientPredefined.delete(preToken);
-        Thread.sleep(300); //In order to avoid 429 Error (too many requests)
     }
 
     @Test

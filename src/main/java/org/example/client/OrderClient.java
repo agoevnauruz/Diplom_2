@@ -1,6 +1,5 @@
 package org.example.client;
 
-import io.qameta.allure.Step;
 import org.example.credentials.Order;
 import org.example.providers.CredentialProvider;
 import io.restassured.response.ValidatableResponse;
@@ -27,36 +26,29 @@ public class OrderClient extends Client {
     }
 
     public ValidatableResponse create(String accessToken, Order order) {
-        return sendRequestWithBody(order, true, "post", accessToken);
+        return sendRequestWithAuth(order, "post", accessToken);
     }
 
-
     public ValidatableResponse createWithoutAuth(Order order) {
+        return sendRequestWithoutAuth(order, "post");
+    }
+
+    private ValidatableResponse sendRequestWithAuth(Order order, String method, String accessToken) {
+        return given()
+                .header("authorization", "bearer " + accessToken)
+                .spec(getSpec())
+                .body(order)
+                .when()
+                .request(method, PATH)
+                .then();
+    }
+
+    private ValidatableResponse sendRequestWithoutAuth(Order order, String method) {
         return given()
                 .spec(getSpec())
                 .body(order)
                 .when()
-                .post(PATH)
+                .request(method, PATH)
                 .then();
-    }
-
-
-    private ValidatableResponse sendRequestWithBody(Order order, boolean withAuth, String method, String accessToken) {
-        if (withAuth) {
-            return given()
-                    .header("authorization", "bearer " + accessToken)
-                    .spec(getSpec())
-                    .body(order)
-                    .when()
-                    .request(method, PATH)
-                    .then();
-        } else {
-            return given()
-                    .spec(getSpec())
-                    .body(order)
-                    .when()
-                    .request(method, PATH)
-                    .then();
-        }
     }
 }
