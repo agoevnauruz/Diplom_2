@@ -25,7 +25,6 @@ public class UserLoginTest {
     public void userCanLogin() throws InterruptedException {
         ValidatableResponse responseCreate = userClient.create(user);
         responseCreate.assertThat().statusCode(SC_OK);
-        Thread.sleep(1000);
 
         ValidatableResponse responseLogin = userClient.login(Credentials.from(user)).log().all();
         int statusCode = responseLogin.extract().statusCode();
